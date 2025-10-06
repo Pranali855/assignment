@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>slideshow</title>
+  <style>
+    .container {
+        width: fit-content;
+        margin: 50px auto;
+        position: relative;
+    }
+    .slider {
+        height: 400px;
+        width: 600px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    .ico-action {
+        height: 80px;
+        position: absolute;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .icon-prev {
+        left: 0;
+        top: 40%;  
+    }
+    .icon-next {
+        right: 0;
+        top: 40%; 
+    }
+    .icon-prev:hover {
+        transform: scale(0.8) translateX(10px);
+    }
+    .icon-next:hover {
+        transform: scale(0.8) translateX(-10px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="./cat.jpeg" id="slide" class="slider">
+    <img src="./previous (1).png" class="ico-action icon-prev" onclick="prev()"/>
+    <img src="./next.png" class="ico-action icon-next" onclick="next()"/>
+  </div>
+
+  <script>
+    const images = ["./cat.jpeg", "./dog.jpeg", "./lion.jpeg", "./jiraffe.jpeg", "./butterfly.jpeg"];
+    let index = 0;
+    const slide = document.getElementById('slide');
+
+    function next() {
+        if (index < images.length - 1) {
+            index++;
+        } else {
+            index = 0;
+        }
+        slide.src = images[index];
+    }
+
+    function prev() {
+        if (index > 0) {
+            index--;
+        } else {
+            index = images.length - 1;
+        }
+        slide.src = images[index];
+    }
+
+    setInterval(next, 2000);
+  </script>
+</body>
+</html>
